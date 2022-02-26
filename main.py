@@ -18,7 +18,7 @@ ser = serial.Serial(port, 115200, timeout=0.1)
 log = open("./ping.csv","a")
 
 last_ping_time = 0
-ping_interval_seconds = 30
+ping_interval_seconds = 120
 ping_node = 3
 
 # Sample loop result
@@ -58,6 +58,8 @@ while True:
         log.write(str(data["uptimeSeconds"]))
         log.write(",")
         log.write(str(data["bootCount"]))
+        log.write(",")
+        log.write(str(data["sleepCount"]))
         log.write("\n")
         log.flush()
 
