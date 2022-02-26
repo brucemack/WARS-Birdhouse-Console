@@ -1,15 +1,24 @@
+"""
+WARS Birdhouse Mesh Network Project
+Bruce MacKinnon 2022-02-28
+"""
 import serial
 import time
 import json
 from datetime import datetime
 
 # Open the serial port
-ser = serial.Serial('COM5', 115200, timeout=0.1)
+# For Windows:
+#port = "COM5"
+# For MacOS
+port = "/dev/tty.usbserial-0001"
+ser = serial.Serial(port, 115200, timeout=0.1)
+
 # Open the text file
 log = open("./ping.csv","a")
 
 last_ping_time = 0
-ping_interval_seconds = 10
+ping_interval_seconds = 30
 ping_node = 3
 
 # Sample loop result
@@ -52,4 +61,5 @@ while True:
         log.write("\n")
         log.flush()
 
-ser.close()             # close port
+ser.close()
+log.close()
